@@ -32,10 +32,7 @@
 						<h3>Subscribe</h3>
 						<p>You made it so simple. My new site is so much faster and easier to work with than my old
 							site. I just choose the page, make the change.</p>
-						<form>
-							<input type="text" placeholder="Subscribe">
-							<button type="submit">Subscribe</button>
-						</form>
+					 
 					</div>
 				</div>
 			</div>
@@ -44,9 +41,7 @@
 					<div class="tf__footer_bottom">
 						<p>SNSY Inter College © 2023, All Rights Reserved </p>
 						<ul>
-							<li><a href="privacy_policy.php">Privacy Policy </a></li>
-							<li><a href="#"> Terms & Conditions</a></li>
-							<li><a href="#">Support</a></li>
+					 
 						</ul>
 					</div>
 				</div>

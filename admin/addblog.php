@@ -47,21 +47,19 @@ if(isset($_POST['submit']))
 $photo='content/blogs/'.$newfilename;
 	
 	//Getting data from form
-		$title=$_POST['title'];
-		$writer=$_POST['writer'];
-		$detail=$_POST['detail'];
+	
 		$date=date('d-m-y');
 	//Getting data from form
 	
 	
 	
-			$servername = "localhost";
-			$username = "root";
-			$password = "";
-			$dbname = "snsy_inter_college";
+			include('./db.php');
 
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbname);
+			$title=mysqli_real_escape_string($conn ,$_POST['title']);
+			$writer=mysqli_real_escape_string($conn ,$_POST['writer']);
+			$detail=mysqli_real_escape_string($conn ,$_POST['detail']);
 			// Check connection
 			if ($conn->connect_error) {
 			  die("Connection failed: " . $conn->connect_error);
@@ -77,7 +75,8 @@ $photo='content/blogs/'.$newfilename;
 			  header('location:./addblog.php?msg=Successfully Uploaded.');
 			  
 			} else {
-			  echo "Error: " . $sql . "<br>" . $conn->error;
+			  echo "Error: " . $sql . "
+<br>" . $conn->error;
 			}
 
 			$conn->close();
@@ -87,94 +86,74 @@ $photo='content/blogs/'.$newfilename;
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - Add Blog</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="sb-nav-fixed">
-        
-		<?php include('./header.php'); ?>
-		
-		
-        <div id="layoutSidenav">
-            <?php include('./menu.php'); ?>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h5 class="mt-4">Add Blog <a href="./bloglist.php"><button class="btn btn-primary btn-sm">Blog List</button></a></h5>
-                       
-                        <div class="row">
-						
-						<?php if(isset($_GET['msg'])) { ?>
-						
-						<div class="alert alert-success alert-dismissible fade show" role="alert">
-						  <strong>Hey Admin!</strong> You Have Successfully Uploaded Blog.
-						  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div>
-						<?php } ?>
-						
-							<form method="post" enctype="multipart/form-data" action="./addblog.php">
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFirstName" name="title" type="text" placeholder="Enter your first name" />
-                                                        <label for="inputFirstName">Blog Title</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating">
-													<select class="form-control" id="inputLastName" name="writer" >
-													<option>Choose Your Option</option>
-													<option>SNSY Inter College</option>
-													</select>
-                                                        <label for="inputLastName">Writer</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-floating mb-3">
-												 <textarea class="form-control" id="inputEmail" name="detail" style="height:200px;" aria-label="With textarea"></textarea>
-                                                <label for="inputEmail">Blog Detail</label>
-                                            </div>
-                                            <div class="row mb-3">
-                                                
-                                                <div class="col-md-12">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm"  name="photo" type="file" required />
-                                                     
-                                                    </div>
-                                                </div>
-												
-                                            </div>
-                                            <div class="mt-4 mb-0">
-                                                <div class="d-grid"><button name="submit" class="btn btn-primary btn-block" type="submit">Save</button></div>
-                                            </div>
-                                        </form>	
-					 
-                             
-                        </div>
-                        
-                            </div>
-                        
-                </main>
-                <?php include('./footer.php'); ?>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - Add Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="sb-nav-fixed"> <?php include('./header.php'); ?> <div id="layoutSidenav"> <?php include('./menu.php'); ?> <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid px-4">
+            <h5 class="mt-4">Add Blog <a href="./bloglist.php">
+                <button class="btn btn-primary btn-sm">Blog List</button>
+              </a>
+            </h5>
+            <div class="row"> <?php if(isset($_GET['msg'])) { ?> <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Hey Admin!</strong> You Have Successfully Uploaded Blog. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div> <?php } ?> <form method="post" enctype="multipart/form-data" action="./addblog.php">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                      <input class="form-control" id="inputFirstName" name="title" type="text" required placeholder="Enter your first name" />
+                      <label for="inputFirstName">Blog Title</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <select class="form-control" id="inputLastName" name="writer" required>
+                        <option>Choose Your Option</option>
+                        <option>SNSY Inter College</option>
+                      </select>
+                      <label for="inputLastName">Writer</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" id="inputEmail" name="detail" style="height:200px;" aria-label="With textarea" required></textarea>
+                  <label for="inputEmail">Blog Detail</label>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="form-floating mb-3 mb-md-0">
+                      <input class="form-control" id="inputPasswordConfirm" name="photo" type="file" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4 mb-0">
+                  <div class="d-grid">
+                    <button name="submit" class="btn btn-primary btn-block" type="submit">Save</button>
+                  </div>
+                </div>
+              </form>
             </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
+          </div>
+        </main> <?php include('./footer.php'); ?>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+  </body>
 </html>

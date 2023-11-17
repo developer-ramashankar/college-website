@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,11 +18,11 @@ if ($result->num_rows > 0) {
 ?>
 <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
 	<div class="tf__single_instructor">
-		<a href="instructor_details.html" class="tf__single_instructor_img">
+		<a class="tf__single_instructor_img">
 			<img src="<?php echo $row['photo'];?>" alt="instructor" class="img-fluid w-100">
 		</a>
 		<div class="tf__instructor_text">
-			<a href="instructor_details.php"><?php echo $row['name'];?></a>
+			<a><?php echo $row['name'];?></a>
 			<p><?php echo $row['post'];?></p>
 		</div>
 	</div>

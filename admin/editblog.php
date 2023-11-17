@@ -51,10 +51,7 @@ $photo='content/'.$newfilename;
 	$detail=$_POST['detail'];
 	$date=$_POST['date'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -63,7 +60,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE add_blog SET title='$title',writer='$writer',detail='$detail',date='$date' WHERE id='$id'";
+$sql = "UPDATE add_blog SET title='$title',writer='$writer',detail='$detail',date='$date',photo='$photo' WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
   header('location:./bloglist.php?msg=Successfully Updated');
@@ -110,10 +107,7 @@ $conn->close();
 						</div>
 						<?php } ?>
 						<?php					
-							$servername = "localhost";
-							$username = "root";
-							$password = "";
-							$dbname = "snsy_inter_college";
+							include('./db.php');
 							
 							$id=$_GET['id'];
 							

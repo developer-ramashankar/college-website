@@ -6,10 +6,7 @@ if(isset($_GET['action']))
 	$id=$_GET['id']; //Getting id get variable from url.
 	
 	
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "snsy_inter_college";
+	include('./db.php');
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -74,10 +71,7 @@ if(isset($_GET['action']))
 
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

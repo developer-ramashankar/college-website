@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,7 +8,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from add_blog";
+$sql = "SELECT * from add_blog order by id desc";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

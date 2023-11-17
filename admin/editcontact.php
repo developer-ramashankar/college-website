@@ -6,10 +6,7 @@ if(isset($_POST['submit']))
 	$address=$_POST['address'];
 	$email=$_POST['email'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -64,10 +61,7 @@ $conn->close();
 						</div>
 						<?php } ?>
 						<?php					
-							$servername = "localhost";
-							$username = "root";
-							$password = "";
-							$dbname = "snsy_inter_college";
+							include('./db.php');
 							
 							$id=$_GET['id'];
 							

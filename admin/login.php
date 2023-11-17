@@ -6,10 +6,7 @@ if(isset($_POST['login']))
 	$mobile=$_POST['mobile'];
 	$pass=$_POST['pass'];
 	
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

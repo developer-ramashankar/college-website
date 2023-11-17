@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,7 +8,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM home_slider order by id DESC limit 3";   //Change Only Table's Name
+$sql = "SELECT * FROM home_slider order by id DESC limit 5";   //Change Only Table's Name
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

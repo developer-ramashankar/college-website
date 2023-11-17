@@ -49,10 +49,7 @@ $photo='content/teacher/'.$newfilename;
 	$name=$_POST['name'];
 	$post=$_POST['post'];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "snsy_inter_college";
+include('./db.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -61,7 +58,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE add_teacher SET name='$name',post='$post' WHERE id='$id'";
+$sql = "UPDATE add_teacher SET name='$name',post='$post',photo='$photo' WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
   header('location:./teacherlist.php?msg=Successfully Updated');
@@ -107,10 +104,7 @@ $conn->close();
 						</div>
 						<?php } ?>
 						<?php					
-							$servername = "localhost";
-							$username = "root";
-							$password = "";
-							$dbname = "snsy_inter_college";
+							include('./db.php');
 							
 							$id=$_GET['id'];
 							
